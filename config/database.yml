@@ -49,6 +49,8 @@ test:
 #
 production:
   <<: *default
-  database: login_api_production
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   username: login_api
   password: <%= ENV['LOGIN_API_DATABASE_PASSWORD'] %>
