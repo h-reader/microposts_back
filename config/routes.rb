@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   end
 
   scope :api do
-    resources :microposts, controllers: :microposts
+    resources :microposts, except: [:show]
+    get 'user/:id/microposts', to: 'microposts#list'
   end
 
 end

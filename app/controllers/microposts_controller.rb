@@ -5,11 +5,18 @@ class MicropostsController < ApplicationController
   # GET /microposts.json
   def index
     @microposts = Micropost.all
+    render json: @microposts
   end
 
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+  end
+
+  # GET /user/1/microposts
+  # GET /user/1/microposts.json
+  def list
+    render json: User.find(params[:id]).microposts
   end
 
   # POST /api/microposts
@@ -18,7 +25,7 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.new(micropost_params)
 
     if @micropost.save
-      render :show, status: :created, location: @micropost
+      render json: @micropost
     else
       render json: @micropost.errors, status: :unprocessable_entity
     end

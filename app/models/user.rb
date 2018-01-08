@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
           # 今回はOAuth認証は行わないため以下はコメントアウト
           # :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+
+  has_many :microposts
 end
